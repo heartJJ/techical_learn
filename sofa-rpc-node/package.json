@@ -1,0 +1,17 @@
+{
+  "name": "sofa-rpc-node-learn",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "npx mocha ./withJs/mocha_test.js"
+  },
+  "author": "heartJJ",
+  "license": "ISC",
+  "dependencies": {
+    "antpb": "^1.0.0",
+    "mocha": "^6.2.2",
+    "sofa-bolt-node": "^1.2.0",
+    "sofa-rpc-node": "^1.14.2"
+  }
+}
