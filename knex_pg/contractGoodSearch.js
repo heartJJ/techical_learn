@@ -7,15 +7,8 @@ const search = async () => {
   for (let i = 0; i < page; i++) {
     const datas = await knex('contractgood').select('GUID', 'goods')
       .limit(50).offset(i * 50);
-    
-    
+    console.log(datas);
   };
-    
-    
-
-
-
-  console.log(data);
 };
 
 search();
