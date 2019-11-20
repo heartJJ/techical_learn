@@ -29,7 +29,7 @@ async function invoke() {
 
   const result = await consumer.invoke('echoObj', [{
     name: 'gxcsoccer',
-    group: 'B',
+    group: 'C',
   }], { responseTimeout: 3000 });
   console.log(result);
 }
