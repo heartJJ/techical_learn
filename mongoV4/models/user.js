@@ -1,4 +1,5 @@
 const mongoose = require('../common/mongooseConnection');
+const ObjectId = require('mongoose').Types.ObjectId;
 
 const UsersSchema = new mongoose.Schema({
   name: String,
@@ -15,7 +16,8 @@ const UsersSchema = new mongoose.Schema({
     }
   },
   info: Array,
-  address: Object
+  address: Object,
+  avatar: {type: ObjectId, ref: 'Report'}, // avatar关联着 Report 中的id -> Report id
 });
 
 UsersSchema.pre('save', function(next) {
