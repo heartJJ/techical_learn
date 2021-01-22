@@ -17,4 +17,11 @@ const knex = require('knex')({
   // }
 })
 
+knex.client.on('query-response', function (response, obj, builder) {
+  // if (obj.method !== 'select' || !['release', 'production'].includes(process.env.NODE_ENV)) {
+  //   console.log(builder.toString());
+  // }
+  console.log('-------------------\n', builder.toString());
+});
+
 module.exports = knex;
