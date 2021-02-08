@@ -1,0 +1,20 @@
+service:
+  name: h_midway
+provider:
+  name: aliyun
+  initTimeout: 10
+deployType: egg
+package:
+  include:
+    - dist
+functions:
+  app_index:
+    handler: index.handler
+    events:
+      - http:
+          path: /*
+globalDependencies:
+  '@midwayjs/simple-lock': '*'
+layers:
+  eggLayer:
+    path: 'npm:@midwayjs/egg-layer'
