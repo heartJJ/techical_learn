@@ -1,0 +1,14 @@
+service:
+  name: serverless-hello-world        ## 函数组名，可以理解为应用名
+
+provider:
+  name: aliyun                        ## 发布的平台，这里是阿里云
+  
+functions:                            ## 函数的定义
+  index:                              ## 第一个函数名，名叫 index
+    handler: index.handler            ## 函数的入口为 index.handler
+    events:                           ## 绑定的触发器，这里为 http 触发器，用到的方法为 get
+      - http:
+          method: get
+package:                              ## 构建出来的压缩包文件名
+  artifact: code.zip

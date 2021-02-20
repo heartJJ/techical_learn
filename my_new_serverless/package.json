@@ -1,0 +1,18 @@
+{
+  "name": "midway-faas-hello-world",
+  "version": "1.0.0",
+  "private": true,
+  "dependencies": {
+    "@midwayjs/faas": "^1.0.0"
+  },
+  "devDependencies": {
+    "@types/mocha": "^5.2.5",
+    "@midwayjs/serverless-invoke": "1"
+  },
+  "scripts": {
+    "build": "f package --skipZip",
+    "test": "f test",
+    "dev": "f invoke -p",
+    "debug": "f invoke -p --debug"
+  }
+}
