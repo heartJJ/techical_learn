@@ -1,0 +1,16 @@
+{
+  "name": "with_parcel",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "parcel ./index.html"
+  },
+  "keywords": [],
+  "author": "hanjianjie <hanjj@firstgrid.cn>",
+  "license": "ISC",
+  "dependencies": {},
+  "devDependencies": {
+    "parcel": "^2.0.0-beta.1"
+  }
+}

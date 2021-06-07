@@ -1,0 +1,12 @@
+<!DOCTYPE html>  
+<html lang="zh-CN"> 
+<head> 
+  <meta charset="utf-8"> 
+  <title>my_ts_web_demo</title> 
+  <script src='./build/require.js'></script> {# 解决import模块AMD编译后无法被识别的问题 #}
+  <script src='./build/page.js'></script>
+</head> 
+<body> 
+  <script>require(["page"], (page) => new page.default())</script>
+</body> 
+</html> 
