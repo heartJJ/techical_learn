@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+package h2;
+
+service Say {
+  rpc getMsg (SayRequest) returns (SayResponse) {};
+}
+
+message SayRequest {
+  int32 id = 1;
+}
+
+message SayResponse {
+  string name = 1;
+}

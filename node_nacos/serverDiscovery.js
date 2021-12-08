@@ -34,11 +34,11 @@ const connectNacos = async () => {
   // });
 }
 
-const getPayment = async (client) => {
+const getServer = async (client, serverName) => {
   return new Promise((resolve, reject) => {
     // subscribe instance
-    client.subscribe('nacos-payment-provider', hosts => {
-      console.log('~~~~~~~~~~~~\n', hosts);
+    client.subscribe(serverName, hosts => {
+      // console.log('~~~~~~~~~~~~\n', hosts);
       return resolve(hosts);
     });
   })
@@ -46,7 +46,7 @@ const getPayment = async (client) => {
 
 
 const visitPayment = async (client) => {
-  const hosts = await getPayment(client), // 获取服务地址
+  const hosts = await getServer(client, 'nacos-payment-provider'), // 获取服务地址
     pools = hosts.map(v => {
       return {
         host: `${v.ip}:${v.port}`, weight: 1
@@ -67,6 +67,13 @@ const main = async () => {
 }
 
 
-main();
+// 单独执行
+if (module === require.main) {
+  main();
+} else {
+  // 暴露方法供调用
+  module.exports = { connectNacos, getServer };
+}
 
+// main();
 

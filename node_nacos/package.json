@@ -9,8 +9,12 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@grpc/grpc-js": "^1.4.4",
+    "@grpc/proto-loader": "^0.6.7",
     "axios": "^0.24.0",
+    "ioredis": "^4.28.2",
     "load-balancer-algorithm": "^1.0.4",
+    "lodash": "^4.17.21",
     "nacos": "^2.2.0"
   }
 }
