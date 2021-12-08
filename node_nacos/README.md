@@ -31,3 +31,11 @@ node server.js
 
 node client.js
 ```
+
+* ghz 测试示例
+
+```bash
+ghz --insecure --proto ./proto/hello.proto --call h1.Greeter.SayHello -d '{"message": "hhh"}' -n 1000 -c 100 localhost:50051
+
+ghz --insecure --proto ./proto/hello2.proto --call h2.Say.getMsg -d '{"id": "1"}' -n 1000 -c 100 localhost:50051
+```
