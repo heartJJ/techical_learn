@@ -2,20 +2,48 @@
 
 const NacosNamingClient = require('nacos').NacosNamingClient;
 const logger = console;
-const LBA = require('load-balancer-algorithm');
-const axios = require('axios');
 
-const connectNacos = async () => {
-  const client = new NacosNamingClient({
+let client;
+const _connectNacos = async () => {
+  if (client) {
+    return client;
+  }
+
+  const newClient = new NacosNamingClient({
     logger,
     serverList: '127.0.0.1:8848', // replace to real nacos serverList
     namespace: 'public',
   });
-  await client.ready();
+  await newClient.ready();
 
+  client = newClient;
   return client;
+}
 
-  // registry instance
+const getServer = async (serverName) => {
+  const client = await _connectNacos();
+  return new Promise((resolve, reject) => {
+    client.subscribe(serverName, hosts => {
+      return resolve(hosts);
+    });
+  })
+}
+
+const registryServer = async (serverName, ip, port) => {
+  const client = await _connectNacos();
+  await client.registerInstance(serverName, {
+    ip, port,
+  });
+  console.log(`服务${serverName} 成功注册 nacos`);
+  
+}
+
+
+
+module.exports = { registryServer, getServer };
+
+
+ // registry instance
   // const serviceName = 'nodejs.test.domain';
 
   // await client.registerInstance(serviceName, {
@@ -32,48 +60,3 @@ const connectNacos = async () => {
   //   ip: '1.1.1.1',
   //   port: 8080,
   // });
-}
-
-const getServer = async (client, serverName) => {
-  return new Promise((resolve, reject) => {
-    // subscribe instance
-    client.subscribe(serverName, hosts => {
-      // console.log('~~~~~~~~~~~~\n', hosts);
-      return resolve(hosts);
-    });
-  })
-}
-
-
-const visitPayment = async (client) => {
-  const hosts = await getServer(client, 'nacos-payment-provider'), // 获取服务地址
-    pools = hosts.map(v => {
-      return {
-        host: `${v.ip}:${v.port}`, weight: 1
-      }
-    }),
-    loadBalance = new LBA.WeightedRoundRobin(pools),
-    address = loadBalance.pick(); // 负载均衡选择一个地址
- 
-  console.log('~~~~~~~~~~~~\n', address);
-  
-  const r = await axios.get(`http://${address.host}/echo/nacos_node`);
-  console.log('~~~~~~~~~~~~\n', r.data);
-}
-
-const main = async () => {
-  const client = await connectNacos();
-  await visitPayment(client);
-}
-
-
-// 单独执行
-if (module === require.main) {
-  main();
-} else {
-  // 暴露方法供调用
-  module.exports = { connectNacos, getServer };
-}
-
-// main();
-

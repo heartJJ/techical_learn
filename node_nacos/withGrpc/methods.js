@@ -8,7 +8,7 @@ function SayHello(call, callback) {
 // 异步请求
 const getMsg = async (call, callback) => {
   const id = call.request.id;
-  await redis.set(`test${id}`, `reply with number: ${Math.round()}`);
+  await redis.set(`test${id}`, `reply with number: ${Math.random()}`);
   const name = await redis.get(`test${id}`);
   callback(null, { name });
 };

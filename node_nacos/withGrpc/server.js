@@ -1,12 +1,13 @@
 const grpc = require('@grpc/grpc-js');
-const allProto = require('./loadProto');
+const allProto = require('./proto/loadProto');
 const methods = require('./methods');
-const { connectNacos } = require('../serverDiscovery');
+const { registryServer } = require('../serverDiscovery');
 
 const _startServer = async (server) => {
   return new Promise((resolve, reject) => {
-    server.bindAsync('0.0.0.0:50051', grpc.ServerCredentials.createInsecure(), () => {
+    server.bindAsync('0.0.0.0:50051', grpc.ServerCredentials.createInsecure(), async () => {
       server.start()
+      await registryServer('grpc-demo-server', '0.0.0.0', '50051');
       console.log('grpc server started');
       resolve();
     })
@@ -31,13 +32,6 @@ const main = async () => {
   });
 
   await _startServer(server);
-
-  const nacosClient = await connectNacos();
-
-  await nacosClient.registerInstance('grpc.demo.server', {
-      ip: '0.0.0.0',
-      port: 50051,
-  });
 };
 
 main();
