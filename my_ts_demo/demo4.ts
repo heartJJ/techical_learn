@@ -18,7 +18,7 @@ function getTotal(one, two) {
 }
 let total = getTotal(1, 2); // total: any
 
-// 推断为nuumber
+// 推断为number
 function getTotal2(one: number, two: number) {
   return one + two;
 }

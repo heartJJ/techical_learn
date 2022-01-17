@@ -20,6 +20,8 @@ const x: {
 // 字符串数组
 const y: string[] = ['a', 'b', 'c'];
 
+const y2: Array<string> = [ 'aa', 'bb', 'cc'];
+
 // 类
 class Person { };
 const p1: Person = new Person();
@@ -27,3 +29,7 @@ const p1: Person = new Person();
 // 函数
 const f1: () => string // 定义function 必须返回字符串
   = () => { return '1' };
+
+
+
+  

@@ -11,3 +11,5 @@ interface t1 {
 const new_t: t1 = {
   uname: 'first t1', age: 10
 }
+
+
