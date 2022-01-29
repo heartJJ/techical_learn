@@ -13,3 +13,16 @@ const new_t: t1 = {
 }
 
 
+interface getList {
+  total: number,
+  list: Array<t1>
+}
+
+const new_g: getList = {
+  total: 10,
+  list: [
+    {
+      uname: 'aa', age: 10
+    }
+  ]
+}

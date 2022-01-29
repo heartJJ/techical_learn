@@ -9,6 +9,11 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "lowdb": "^1.0.0",
     "reflect-metadata": "^0.1.13"
+  },
+  "devDependencies": {
+    "@types/lowdb": "^1.0.11",
+    "@types/node": "^17.0.9"
   }
 }
