@@ -12,7 +12,7 @@
     "@grpc/grpc-js": "^1.4.4",
     "@grpc/proto-loader": "^0.6.7",
     "axios": "^0.24.0",
-    "fastify": "^3.24.1",
+    "fastify": "^3.29.4",
     "ioredis": "^4.28.2",
     "load-balancer-algorithm": "^1.0.4",
     "lodash": "^4.17.21",
